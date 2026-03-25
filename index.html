@@ -1,0 +1,2013 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AquaVera Stuttgart — Badsanierung mit festem Projektleiter</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Design Tokens ─────────────────────────────────────────── */
+    :root {
+      --bg-01: #F5F2EE;
+      --bg-02: #EDEAE5;
+      --bg-03: #1E2226;
+      --primary: #2C4A3E;
+      --primary-hover: #243E33;
+      --primary-active: #1A2E26;
+      --text-heading-light: #1A1917;
+      --text-body-light: #3D3A35;
+      --text-muted-light: #857F77;
+      --text-heading-dark: #F5F2EE;
+      --text-body-dark: #C8C3BC;
+      --text-muted-dark: #8A837B;
+      --content-width: 1120px;
+      --section-padding-v: 96px;
+      --font-heading: "Fraunces", Georgia, serif;
+      --font-body: "Inter", system-ui, sans-serif;
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+    }
+
+    /* ─── Reset & Base ──────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--text-body-light);
+      background: var(--bg-01);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    /* ─── Layout Helpers ────────────────────────────────────────── */
+    .container {
+      max-width: var(--content-width);
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    section {
+      padding: var(--section-padding-v) 0;
+    }
+
+    /* ─── Typography ────────────────────────────────────────────── */
+    h1, h2, h3, h4 {
+      font-family: var(--font-heading);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+    }
+
+    h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+    h2 { font-size: clamp(1.9rem, 3.5vw, 3rem); }
+    h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); }
+
+    p { line-height: 1.7; font-size: 1.05rem; }
+
+    /* ─── Buttons ───────────────────────────────────────────────── */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--primary);
+      color: var(--text-heading-dark);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 16px 28px;
+      border-radius: var(--radius-md);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+      letter-spacing: 0.01em;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(44,74,62,0.35);
+    }
+    .btn-primary:active {
+      background: var(--primary-active);
+      transform: translateY(0);
+    }
+
+    .btn-ghost {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text-heading-dark);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 400;
+      padding: 16px 24px;
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(245,242,238,0.25);
+      cursor: pointer;
+      text-decoration: none;
+      transition: border-color 0.2s ease, background 0.2s ease;
+      letter-spacing: 0.01em;
+    }
+    .btn-ghost:hover {
+      border-color: rgba(245,242,238,0.5);
+      background: rgba(245,242,238,0.06);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--primary);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 500;
+      padding: 16px 24px;
+      border-radius: var(--radius-md);
+      border: 1.5px solid var(--primary);
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s ease, color 0.2s ease;
+    }
+    .btn-secondary:hover {
+      background: var(--primary);
+      color: var(--text-heading-dark);
+    }
+
+    /* ─── Scroll Animations ─────────────────────────────────────── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .stagger > .fade-in:nth-child(1) { transition-delay: 0s; }
+    .stagger > .fade-in:nth-child(2) { transition-delay: 0.1s; }
+    .stagger > .fade-in:nth-child(3) { transition-delay: 0.2s; }
+    .stagger > .fade-in:nth-child(4) { transition-delay: 0.3s; }
+    .stagger > .fade-in:nth-child(5) { transition-delay: 0.4s; }
+    .stagger > .fade-in:nth-child(6) { transition-delay: 0.5s; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in { opacity: 1; transform: none; transition: none; }
+    }
+
+    /* ─── Image Placeholder ─────────────────────────────────────── */
+    .img-placeholder {
+      background: var(--bg-02);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted-light);
+      font-family: var(--font-body);
+      font-size: 13px;
+      border-radius: var(--radius-md);
+      width: 100%;
+    }
+
+    /* ─── FUD Puffer ────────────────────────────────────────────── */
+    .fud-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-top: 20px;
+      align-items: center;
+    }
+    .fud-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.875rem;
+      color: var(--text-muted-dark);
+    }
+    .fud-item svg { flex-shrink: 0; opacity: 0.7; }
+
+    /* ══════════════════════════════════════════════════════════════
+       SEKTION 1 — HERO
+    ══════════════════════════════════════════════════════════════ */
+    .hero {
+      background: var(--bg-03);
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding: 120px 0 96px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      animation: kenBurns 8000ms cubic-bezier(0.16, 1, 0.3, 1) infinite alternate;
+      transform-origin: center center;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        to right,
+        rgba(30,34,38,0.92) 0%,
+        rgba(30,34,38,0.78) 50%,
+        rgba(30,34,38,0.55) 100%
+      );
+    }
+    .hero-bg-placeholder {
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #1E2226 0%, #2C4A3E 100%);
+    }
+
+    @keyframes kenBurns {
+      from { transform: scale(1.0) translate(0, 0); transform-origin: center center; }
+      to   { transform: scale(1.08) translate(-2%, 2%); transform-origin: 35% 60%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .hero-bg img { animation: none; }
+    }
+
+    .hero .container {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .hero-content { max-width: 720px; }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted-dark);
+      margin-bottom: 24px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--text-muted-dark);
+    }
+
+    .hero h1 {
+      color: var(--text-heading-dark);
+      margin-bottom: 24px;
+    }
+
+    .hero-sub {
+      font-size: 1.1rem;
+      color: var(--text-body-dark);
+      line-height: 1.65;
+      margin-bottom: 40px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SEKTION 2 — DAS PROBLEM
+    ══════════════════════════════════════════════════════════════ */
+    .problem {
+      background: var(--bg-02);
+    }
+
+    .problem .container {
+      max-width: 800px;
+    }
+
+    .problem-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted-light);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .problem-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--text-muted-light);
+    }
+
+    .problem h2 {
+      color: var(--text-heading-light);
+      margin-bottom: 48px;
+    }
+
+    .problem-quote {
+      font-family: var(--font-heading);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-style: italic;
+      color: var(--primary);
+      border-left: 3px solid var(--primary);
+      padding-left: 28px;
+      margin-bottom: 40px;
+      line-height: 1.4;
+    }
+
+    .problem-body p {
+      color: var(--text-body-light);
+      margin-bottom: 20px;
+    }
+    .problem-body p:last-child { margin-bottom: 0; }
+
+    /* ══════════════════════════════════════════════════════════════
+       SEKTION 3 — DIE AQUAVERA-ANTWORT
+    ══════════════════════════════════════════════════════════════ */
+    .answer {
+      background: var(--bg-01);
+    }
+
+    .answer .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .answer-image {
+      position: sticky;
+      top: 96px;
+    }
+    .answer-image img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+    }
+    .answer-image .img-placeholder {
+      aspect-ratio: 4/5;
+    }
+
+    .answer-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted-light);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .answer-eyebrow::before {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 1px;
+      background: var(--text-muted-light);
+    }
+
+    .answer h2 {
+      color: var(--text-heading-light);
+      margin-bottom: 8px;
+    }
+    .answer-sub {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.2rem;
+      color: var(--text-muted-light);
+      margin-bottom: 32px;
+    }
+
+    .answer-intro {
+      color: var(--text-body-light);
+      margin-bottom: 36px;
+    }
+
+    .answer-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .answer-list li {
+      display: flex;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid rgba(30,34,38,0.08);
+      font-size: 0.975rem;
+      color: var(--text-body-light);
+      line-height: 1.6;
+    }
+    .answer-list li:first-child { padding-top: 0; }
+    .answer-list li::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 20px;
+      min-width: 20px;
+      background: var(--primary);
+      border-radius: 50%;
+      margin-top: 3px;
+    }
+
+    .answer-note {
+      margin-top: 32px;
+      padding: 20px 24px;
+      background: var(--bg-02);
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      color: var(--text-body-light);
+      line-height: 1.6;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SEKTION 4 — PROJEKTE
+    ══════════════════════════════════════════════════════════════ */
+    .projects {
+      background: var(--bg-02);
+    }
+
+    .projects-header {
+      margin-bottom: 64px;
+    }
+    .projects-header h2 { color: var(--text-heading-light); margin-bottom: 12px; }
+    .projects-header p { color: var(--text-muted-light); font-size: 1.05rem; }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .project-card {
+      background: var(--bg-01);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+
+    .project-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      position: relative;
+    }
+    .project-images img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      display: block;
+    }
+    .project-images .img-placeholder {
+      aspect-ratio: 1/1;
+      border-radius: 0;
+    }
+    /* Projekt 2: hochkant, unterer Bereich */
+    .project-images-portrait img {
+      aspect-ratio: 4/5;
+      object-position: center bottom;
+    }
+    .project-images-portrait .img-placeholder {
+      aspect-ratio: 4/5;
+    }
+    .before-after-label {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(30,34,38,0.75);
+      color: var(--text-heading-dark);
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+      backdrop-filter: blur(4px);
+    }
+    .after-label {
+      left: calc(50% + 12px);
+    }
+
+    .project-body { padding: 28px; }
+
+    .project-meta {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+    .project-tag {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--primary);
+      background: rgba(44,74,62,0.1);
+      padding: 4px 10px;
+      border-radius: var(--radius-sm);
+    }
+
+    .project-card h3 {
+      color: var(--text-heading-light);
+      font-size: 1.15rem;
+      margin-bottom: 10px;
+    }
+
+    .project-description {
+      font-size: 0.9rem;
+      color: var(--text-body-light);
+      margin-bottom: 16px;
+      line-height: 1.65;
+    }
+
+    .project-quote {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 0.95rem;
+      color: var(--text-body-light);
+      border-left: 2px solid var(--primary);
+      padding-left: 16px;
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+    .project-author {
+      font-size: 0.8rem;
+      color: var(--text-muted-light);
+      padding-left: 18px;
+    }
+
+    .projects-cta {
+      margin-top: 48px;
+      text-align: center;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SEKTION 5 — VERTRAUEN
+    ══════════════════════════════════════════════════════════════ */
+    .trust {
+      background: var(--bg-01);
+    }
+
+    .trust-header { margin-bottom: 64px; }
+    .trust-header h2 { color: var(--text-heading-light); margin-bottom: 12px; }
+    .trust-header p { color: var(--text-muted-light); font-size: 1.05rem; }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .trust-numbers {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .trust-number-item {
+      padding: 20px;
+      background: var(--bg-02);
+      border-radius: var(--radius-md);
+    }
+    .trust-number {
+      font-family: var(--font-heading);
+      font-size: 2.2rem;
+      font-weight: 400;
+      color: var(--primary);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .trust-number-label {
+      font-size: 0.85rem;
+      color: var(--text-muted-light);
+      line-height: 1.4;
+    }
+
+    .trust-left { display: flex; flex-direction: column; gap: 20px; }
+    .trust-right { display: flex; flex-direction: column; gap: 20px; }
+    .trust-left .trust-guarantee { flex: 1; }
+    .trust-right .trust-kfw { flex: 1; }
+
+    .trust-team img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+    }
+    .trust-team .img-placeholder { aspect-ratio: 4/3; }
+
+    .trust-guarantee {
+      padding: 24px;
+      background: var(--bg-02);
+      border-radius: var(--radius-md);
+    }
+    .trust-guarantee h3 {
+      color: var(--text-heading-light);
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+    }
+    .trust-guarantee p {
+      font-size: 0.875rem;
+      color: var(--text-body-light);
+      margin-bottom: 10px;
+    }
+    .trust-guarantee p:last-child { margin-bottom: 0; }
+
+    .trust-kfw {
+      padding: 24px;
+      border: 1.5px solid rgba(44,74,62,0.2);
+      border-radius: var(--radius-md);
+    }
+    .trust-kfw h3 {
+      color: var(--text-heading-light);
+      font-size: 1.25rem;
+      margin-bottom: 12px;
+    }
+    .trust-kfw p {
+      font-size: 0.875rem;
+      color: var(--text-body-light);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SEKTION 6 — SHOWROOM
+    ══════════════════════════════════════════════════════════════ */
+    .showroom {
+      background: var(--bg-02);
+    }
+
+    .showroom .container {
+      display: grid;
+      grid-template-columns: 3fr 2fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .showroom-image img {
+      width: 100%;
+      aspect-ratio: 5/4;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+    }
+    .showroom-image .img-placeholder { aspect-ratio: 5/4; }
+
+    .showroom-eyebrow {
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted-light);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .showroom-eyebrow::before {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--text-muted-light);
+      display: block;
+    }
+
+    .showroom h2 {
+      color: var(--text-heading-light);
+      margin-bottom: 20px;
+    }
+    .showroom-sub {
+      font-size: 1.05rem;
+      color: var(--text-muted-light);
+      margin-bottom: 20px;
+    }
+    .showroom-body {
+      color: var(--text-body-light);
+      margin-bottom: 36px;
+    }
+
+    .showroom-fud { margin-top: 20px; }
+    .showroom-fud .fud-item { color: var(--text-muted-light); }
+    .showroom-fud .fud-item svg path { stroke: var(--text-muted-light); }
+
+    /* ══════════════════════════════════════════════════════════════
+       SEKTION 7 — KUNDENSTIMMEN
+    ══════════════════════════════════════════════════════════════ */
+    .testimonials {
+      background: var(--bg-01);
+    }
+
+    .testimonials-header { margin-bottom: 64px; }
+    .testimonials-header h2 { color: var(--text-heading-light); }
+
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--bg-02);
+      border-radius: var(--radius-lg);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .testimonial-stars {
+      display: flex;
+      gap: 3px;
+      color: #C8A96E;
+    }
+
+    .testimonial-quote {
+      font-family: var(--font-heading);
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--text-heading-light);
+      line-height: 1.55;
+      flex: 1;
+    }
+    .testimonial-quote::before { content: '\201E'; }
+    .testimonial-quote::after  { content: '\201C'; }
+
+    .testimonial-meta { border-top: 1px solid rgba(30,34,38,0.1); padding-top: 16px; }
+    .testimonial-name {
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--text-heading-light);
+      margin-bottom: 3px;
+    }
+    .testimonial-type {
+      font-size: 0.8rem;
+      color: var(--text-muted-light);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SEKTION 8 — LEAD-FORMULAR
+    ══════════════════════════════════════════════════════════════ */
+    .lead-form {
+      background: var(--bg-03);
+    }
+
+    .lead-form .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .lead-form-intro h2 {
+      color: var(--text-heading-dark);
+      margin-bottom: 16px;
+    }
+    .lead-form-intro p {
+      color: var(--text-body-dark);
+      font-size: 1.05rem;
+      margin-bottom: 40px;
+    }
+
+    .lead-proof {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .lead-proof-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--text-muted-dark);
+    }
+    .lead-proof-dot {
+      width: 8px;
+      height: 8px;
+      min-width: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+    }
+
+    .form-card {
+      background: var(--bg-01);
+      border-radius: var(--radius-lg);
+      padding: 40px;
+    }
+
+    .form-progress {
+      height: 3px;
+      background: var(--bg-02);
+      border-radius: 99px;
+      margin-bottom: 32px;
+      overflow: hidden;
+    }
+    .form-progress-fill {
+      height: 100%;
+      background: var(--primary);
+      border-radius: 99px;
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      width: 20%;
+    }
+
+    .form-step-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted-light);
+      margin-bottom: 12px;
+    }
+    .form-step-title {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      color: var(--text-heading-light);
+      margin-bottom: 28px;
+    }
+
+    .form-step { display: none; }
+    .form-step.active { display: block; }
+
+    /* Style tiles */
+    .style-tiles {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .style-tile {
+      border: 2px solid transparent;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--bg-02);
+      transition: border-color 0.2s ease, transform 0.15s ease;
+      text-align: left;
+    }
+    .style-tile:hover { transform: translateY(-2px); }
+    .style-tile.selected {
+      border-color: var(--primary);
+    }
+    .style-tile img {
+      width: 100%;
+      aspect-ratio: 3/2;
+      object-fit: cover;
+      display: block;
+    }
+    .style-tile .img-placeholder {
+      aspect-ratio: 3/2;
+      border-radius: 0;
+    }
+    .style-tile-label {
+      padding: 10px 12px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--text-heading-light);
+    }
+    .style-tile-text {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      aspect-ratio: 3/2;
+      background: var(--bg-02);
+      color: var(--text-muted-light);
+      font-size: 0.9rem;
+      font-family: var(--font-heading);
+      font-style: italic;
+    }
+
+    /* Radio-style options */
+    .form-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .form-option {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      border: 1.5px solid var(--bg-02);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: border-color 0.2s ease, background 0.2s ease;
+      font-size: 0.95rem;
+      color: var(--text-body-light);
+      background: var(--bg-01);
+    }
+    .form-option:hover { border-color: rgba(44,74,62,0.3); background: var(--bg-02); }
+    .form-option.selected {
+      border-color: var(--primary);
+      background: rgba(44,74,62,0.06);
+      color: var(--text-heading-light);
+    }
+    .form-option-dot {
+      width: 18px;
+      height: 18px;
+      min-width: 18px;
+      border-radius: 50%;
+      border: 2px solid var(--bg-02);
+      background: var(--bg-01);
+      transition: border-color 0.2s ease, background 0.2s ease;
+    }
+    .form-option.selected .form-option-dot {
+      border-color: var(--primary);
+      background: var(--primary);
+      box-shadow: inset 0 0 0 3px var(--bg-01);
+    }
+
+    /* Contact fields */
+    .form-fields {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 24px;
+    }
+    .form-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .form-field label {
+      font-size: 0.8rem;
+      font-weight: 500;
+      color: var(--text-muted-light);
+      letter-spacing: 0.04em;
+    }
+    .form-field input {
+      padding: 13px 16px;
+      border: 1.5px solid var(--bg-02);
+      border-radius: var(--radius-md);
+      background: var(--bg-01);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      color: var(--text-heading-light);
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+    .form-field input:focus { border-color: var(--primary); }
+
+    .form-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .form-btn-next {
+      width: 100%;
+      padding: 16px;
+      background: var(--primary);
+      color: var(--text-heading-dark);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 500;
+      border: none;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.15s ease;
+      letter-spacing: 0.01em;
+    }
+    .form-btn-next:hover { background: var(--primary-hover); transform: translateY(-1px); }
+    .form-btn-next:disabled { opacity: 0.4; cursor: not-allowed; transform: none; }
+
+    .form-btn-back {
+      padding: 14px 20px;
+      background: transparent;
+      color: var(--text-muted-light);
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      transition: color 0.2s ease;
+      white-space: nowrap;
+    }
+    .form-btn-back:hover { color: var(--text-body-light); }
+
+    .form-phone-fallback {
+      margin-top: 20px;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-muted-light);
+    }
+    .form-phone-fallback a {
+      color: var(--text-body-light);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .form-phone-fallback a:hover { color: var(--primary); }
+
+    .form-success { display: none; text-align: center; padding: 20px 0; }
+    .form-success h3 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--text-heading-light);
+      margin-bottom: 12px;
+    }
+    .form-success p {
+      font-size: 0.95rem;
+      color: var(--text-muted-light);
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       SEKTION 9 — FAQ
+    ══════════════════════════════════════════════════════════════ */
+    .faq {
+      background: var(--bg-01);
+    }
+
+    .faq .container {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .faq-left { position: sticky; top: 96px; }
+    .faq-left h2 { color: var(--text-heading-light); margin-bottom: 20px; }
+    .faq-left p { color: var(--text-muted-light); font-size: 1rem; margin-bottom: 32px; }
+
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(30,34,38,0.1);
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      cursor: pointer;
+      text-align: left;
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      color: var(--text-heading-light);
+      line-height: 1.35;
+      transition: color 0.2s ease;
+    }
+    .faq-question:hover { color: var(--primary); }
+    .faq-icon {
+      width: 24px;
+      height: 24px;
+      min-width: 24px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(30,34,38,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+      border-color: var(--primary);
+      background: var(--primary);
+    }
+    .faq-item.open .faq-icon svg path { stroke: white; }
+    .faq-icon svg { display: block; }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease;
+    }
+    .faq-answer-inner {
+      padding: 0 0 24px;
+      font-size: 0.975rem;
+      color: var(--text-body-light);
+      line-height: 1.7;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; }
+
+    .faq-closer {
+      margin-top: 64px;
+      padding: 48px;
+      background: var(--bg-02);
+      border-radius: var(--radius-lg);
+      text-align: center;
+    }
+    .faq-closer h3 {
+      color: var(--text-heading-light);
+      margin-bottom: 12px;
+    }
+    .faq-closer p {
+      color: var(--text-muted-light);
+      margin-bottom: 32px;
+    }
+    .faq-closer-ctas {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .faq-phone {
+      font-size: 0.875rem;
+      color: var(--text-muted-light);
+    }
+    .faq-phone a {
+      color: var(--text-body-light);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .faq-phone a:hover { color: var(--primary); }
+
+    /* ══════════════════════════════════════════════════════════════
+       SEKTION 10 — CLOSER
+    ══════════════════════════════════════════════════════════════ */
+    .closer {
+      background: var(--bg-02);
+      text-align: center;
+    }
+    .closer h2 {
+      color: var(--text-heading-light);
+      margin-bottom: 16px;
+    }
+    .closer p {
+      color: var(--text-muted-light);
+      font-size: 1.05rem;
+      margin-bottom: 40px;
+      max-width: 560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .closer-ctas {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+    }
+    .closer-phone {
+      font-size: 0.875rem;
+      color: var(--text-muted-light);
+    }
+    .closer-phone a {
+      color: var(--text-body-light);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .closer-phone a:hover { color: var(--primary); }
+
+    /* ══════════════════════════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════════════════════════ */
+    .site-footer {
+      background: var(--bg-03);
+      padding: 48px 0;
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .footer-logo {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      font-weight: 400;
+      color: var(--text-heading-dark);
+      letter-spacing: -0.01em;
+    }
+    .footer-nav {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+    .footer-nav a {
+      font-size: 0.875rem;
+      color: var(--text-muted-dark);
+      text-decoration: none;
+      transition: color 0.2s ease;
+    }
+    .footer-nav a:hover { color: var(--text-heading-dark); }
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-muted-dark);
+    }
+
+    @media (max-width: 768px) {
+      .footer-inner { flex-direction: column; align-items: flex-start; gap: 20px; }
+      .closer-ctas .btn-primary { width: 100%; justify-content: center; }
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       STICKY MOBILE CTA
+    ══════════════════════════════════════════════════════════════ */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 12px 20px;
+      background: var(--bg-03);
+      border-top: 1px solid rgba(245,242,238,0.1);
+    }
+    .sticky-cta a {
+      display: block;
+      text-align: center;
+      padding: 16px;
+      background: var(--primary);
+      color: var(--text-heading-dark);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      font-weight: 500;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+
+    /* ══════════════════════════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════════════════════════ */
+    @media (max-width: 768px) {
+      :root { --section-padding-v: 64px; }
+
+      .container { padding: 0 20px; }
+
+      h1 { font-size: 2rem; }
+      h2 { font-size: 1.7rem; }
+
+      /* Hero */
+      .hero { min-height: auto; padding: 100px 0 80px; }
+      .hero .container { grid-template-columns: 1fr; }
+      .hero-ctas { flex-direction: column; }
+      .hero-ctas .btn-primary, .hero-ctas .btn-ghost { width: 100%; justify-content: center; }
+
+      /* Answer */
+      .answer .container { grid-template-columns: 1fr; gap: 40px; }
+      .answer-image { position: static; }
+
+      /* Projects */
+      .projects-grid { grid-template-columns: 1fr; }
+
+      /* Trust */
+      .trust-grid { grid-template-columns: 1fr; gap: 40px; }
+      .trust-numbers { grid-template-columns: 1fr 1fr; }
+
+      /* Showroom */
+      .showroom .container { grid-template-columns: 1fr; gap: 40px; }
+
+      /* Testimonials */
+      .testimonials-grid { grid-template-columns: 1fr; }
+
+      /* Form */
+      .lead-form .container { grid-template-columns: 1fr; gap: 40px; }
+      .style-tiles { grid-template-columns: 1fr 1fr; }
+
+      /* FAQ */
+      .faq .container { grid-template-columns: 1fr; gap: 40px; }
+      .faq-left { position: static; }
+      .faq-closer { padding: 32px 24px; }
+
+      /* Sticky CTA */
+      .sticky-cta { display: block; }
+      body { padding-bottom: 80px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- ══════════════════════════════════════════════════════════════
+     S1 — HERO
+══════════════════════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img
+      src="assets/hero.jpg"
+      alt="Modernes, bewohntes Badezimmer mit warmem Holzschrank, Naturstein und Messingarmaturen — fertiggestellt von AquaVera Stuttgart."
+      onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+    />
+    <div class="hero-bg-placeholder" style="display:none;"></div>
+  </div>
+
+  <div class="container">
+    <div class="hero-content fade-in visible">
+      <div class="hero-eyebrow">AquaVera Stuttgart</div>
+      <h1>Ihr neues Bad in Stuttgart — fertig zum vereinbarten Termin.</h1>
+      <p class="hero-sub">Jeden Tag wissen, was auf Ihrer Baustelle passiert. Fester Projektleiter von der Planung bis zur Übergabe. 387 Stuttgarter Kunden, 4,9 Sterne.</p>
+      <div class="hero-ctas">
+        <a href="#formular" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 8L8 14M2 8H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Jetzt kostenlos anfragen — in 2 Minuten
+        </a>
+        <a href="tel:07113489200" class="btn-ghost">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 3.5C2 2.67 2.67 2 3.5 2H5.36C5.72 2 6.04 2.24 6.14 2.58L7.07 5.59C7.18 5.97 7.01 6.38 6.67 6.58L5.4 7.32C6.24 9.03 7.64 10.43 9.35 11.27L10.09 10C10.29 9.66 10.7 9.49 11.08 9.6L14.09 10.53C14.43 10.63 14.67 10.95 14.67 11.31V13.17C14.67 14 14 14.67 13.17 14.67H12.5C6.69 14.67 2 10 2 4.17V3.5Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          0711 – 348 920 anrufen
+        </a>
+      </div>
+      <div class="fud-list">
+        <div class="fud-item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Unverbindlich und kostenlos — wir melden uns innerhalb von 24 Stunden
+        </div>
+        <div class="fud-item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Kein Verkaufsgespräch, sondern eine ehrliche erste Einschätzung
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     S2 — DAS PROBLEM
+══════════════════════════════════════════════════════════════ -->
+<section class="problem">
+  <div class="container">
+    <div class="problem-eyebrow fade-in">Die Realität</div>
+    <h2 class="fade-in">Was bei Badsanierungen schiefläuft. Und warum fast alle davon überrascht werden.</h2>
+    <blockquote class="problem-quote fade-in">„14 Tage sollte es dauern. Es wurden 12 Wochen."</blockquote>
+    <div class="problem-body fade-in">
+      <p>Das ist kein Einzelfall. Das ist der Normalfall im Badsanierungsmarkt.</p>
+      <p>Jeden Tag ein anderes Gesicht auf der Baustelle. Der Fliesenleger fängt an, bevor der Elektriker fertig ist. Offene Fragen — und niemand geht ans Telefon.</p>
+      <p>Wer die Wahl des Anbieters einmal getroffen hat, glaubt: das Risiko ist hinter mir. Die Realität: Es beginnt danach erst.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     S3 — DIE AQUAVERA-ANTWORT
+══════════════════════════════════════════════════════════════ -->
+<section class="answer">
+  <div class="container">
+    <div class="answer-image fade-in">
+      <img
+        src="assets/project-leader.jpg"
+        alt="AquaVera-Projektleiter auf einer Badsanierungsbaustelle in Stuttgart — mit Bauplan und AquaVera-Polo, Stuttgarter Skyline im Hintergrund."
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="img-placeholder" style="display:none;">assets/project-leader.jpg</div>
+    </div>
+    <div class="answer-text">
+      <div class="answer-eyebrow fade-in">Unser Ansatz</div>
+      <h2 class="fade-in">So arbeiten wir. Täglich.</h2>
+      <p class="answer-sub fade-in">Kein Versprechen ohne Mechanismus.</p>
+      <p class="answer-intro fade-in">Ab dem ersten Gespräch haben Sie einen festen Projektleiter. Nicht den Vertrieb — den Mann oder die Frau, der Ihre Baustelle auch wirklich leitet. Derselbe Ansprechpartner von der Planung bis zur Schlussabnahme.</p>
+      <p class="fade-in" style="color: var(--text-muted-light); margin-bottom: 20px; font-size: 0.9rem; font-style: italic;">Was das in der Praxis bedeutet:</p>
+      <ul class="answer-list stagger">
+        <li class="fade-in">Jeden Abend: ein kurzes WhatsApp-Update. Zwei Fotos. Zwei Sätze. Was heute passiert ist — was morgen kommt.</li>
+        <li class="fade-in">Bei jeder Planabweichung: sofortiger Anruf. Das nennen wir Pflicht, nicht Kür.</li>
+        <li class="fade-in">Nach der Hälfte der Bauzeit: ein gemeinsamer Termin vor Ort. Alles ansehen, Fragen stellen.</li>
+        <li class="fade-in">Bei Projekten ab 25.000 €: gemeinsame Abnahme mit Ihrem Projektleiter und Geschäftsführer Markus Breitner persönlich.</li>
+      </ul>
+      <div class="answer-note fade-in">Sanitärinstallation und Fliesenarbeiten führen wir ausschließlich mit eigenem Personal aus — 12 eigene Installateure, 8 eigene Fliesenleger. Weil dort die Fehler passieren, wenn man nicht aufpasst.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     S4 — PROJEKTE & ERGEBNISSE
+══════════════════════════════════════════════════════════════ -->
+<section class="projects">
+  <div class="container">
+    <div class="projects-header fade-in">
+      <h2>94 Projekte in 2024. Vier davon.</h2>
+      <p>Von der Komplettsanierung bis zum Premium-Umbau. Jedes in Stuttgart oder Umgebung.</p>
+    </div>
+    <div class="projects-grid stagger">
+
+      <article class="project-card fade-in">
+        <div class="project-images">
+          <span class="before-after-label">Vorher</span>
+          <span class="before-after-label after-label">Nachher</span>
+          <img src="assets/project-1-before.webp" alt="Altes Badezimmer mit 70er-Jahre-Kacheln in Olivgrün vor der Sanierung."
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="img-placeholder" style="display:none; aspect-ratio:4/3; border-radius:0;">Vorher</div>
+          <img src="assets/project-1-after.jpg" alt="Fertiggestellte Komplettsanierung — modernes Bad mit grauen Großformatfliesen."
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="img-placeholder" style="display:none; aspect-ratio:4/3; border-radius:0;">Nachher</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag">5,8 m²</span>
+            <span class="project-tag">11 Werktage</span>
+            <span class="project-tag">KfW 455-B</span>
+          </div>
+          <h3>Barrierefreier Umbau, Stuttgart-Degerloch</h3>
+          <p class="project-description">Olivgrüne Kleinkacheln, hohe Badewanne, kein Haltegriff. Bodenebene Dusche mit Haltegriffen — KfW-Förderung von 3.500 € direkt angerechnet.</p>
+          <blockquote class="project-quote">„Bei AquaVera war von Anfang bis Ende dieselbe Person da. Das klingt so simpel, aber das hat wirklich alles verändert."</blockquote>
+          <p class="project-author">— Petra und Klaus Wegner, Stuttgart-Degerloch</p>
+        </div>
+      </article>
+
+      <article class="project-card fade-in">
+        <div class="project-images project-images-portrait">
+          <span class="before-after-label">Vorher</span>
+          <span class="before-after-label after-label">Nachher</span>
+          <img src="assets/project-2-before.webp" alt="Altes Gäste-WC mit beigen Kacheln vor der Luxussanierung."
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="img-placeholder" style="display:none; aspect-ratio:4/3; border-radius:0;">Vorher</div>
+          <img src="assets/project-2-after.jpg" alt="Fertiggestellte Gäste-WC-Luxussanierung — Marmor, Holzlamellenwand, Goldarmatur."
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="img-placeholder" style="display:none; aspect-ratio:4/3; border-radius:0;">Nachher</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag">3,8 m²</span>
+            <span class="project-tag">9 Werktage</span>
+          </div>
+          <h3>Gäste-WC Luxussanierung, Stuttgart-Weinsteige</h3>
+          <p class="project-description">Marmorfliese 60×120, Holzlamellenwand, Unterputz-Armatur in Messing. Auf 3,8 m² kein Kompromiss — sondern ein Statement.</p>
+          <blockquote class="project-quote">„Ich konnte es sehen, bevor der erste Stein gesetzt wurde. Das Ergebnis ist noch besser als meine Vorstellung."</blockquote>
+          <p class="project-author">— Dr. Kerstin Albrecht, Stuttgart-Weinsteige</p>
+        </div>
+      </article>
+
+      <article class="project-card fade-in">
+        <div class="project-images">
+          <span class="before-after-label">Vorher</span>
+          <span class="before-after-label after-label">Nachher</span>
+          <img src="assets/project-3-before.png" alt="Altes Hauptbad aus den 90ern mit weißen Kleinkacheln."
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="img-placeholder" style="display:none; aspect-ratio:4/3; border-radius:0;">Vorher</div>
+          <img src="assets/project-3-after.jpg" alt="Fertiggestelltes Hauptbad mit ebenerdiger Glasdusche und warmem indirektem Licht."
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="img-placeholder" style="display:none; aspect-ratio:4/3; border-radius:0;">Nachher</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag">7,5 m²</span>
+            <span class="project-tag">14 Werktage</span>
+          </div>
+          <h3>Komplettsanierung Hauptbad, Leinfelden-Echterdingen</h3>
+          <p class="project-description">Vollständig entkernt, Leitungen erneuert, ebenerdige Glasdusche. Indirektes Deckenlicht als letzter Schritt — aus einem funktionalen Bad ein Zuhause.</p>
+          <blockquote class="project-quote">„Jeden Tag ein Update. Keine bösen Überraschungen, kein Chaos. Genau so hatte ich mir das vorgestellt."</blockquote>
+          <p class="project-author">— Familie Müller, Leinfelden-Echterdingen</p>
+        </div>
+      </article>
+
+      <article class="project-card fade-in">
+        <div class="project-images">
+          <span class="before-after-label">Vorher</span>
+          <span class="before-after-label after-label">Nachher</span>
+          <img src="assets/project-4-before.webp" alt="Altes Privatbad aus den 2000ern mit Beigefliesen und Whirlpool-Badewanne."
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="img-placeholder" style="display:none; aspect-ratio:4/3; border-radius:0;">Vorher</div>
+          <img src="assets/project-4-after.jpg" alt="Fertiggestelltes Premium-Bad mit freistehender Naturstein-Badewanne und Glasdampfsauna."
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+          <div class="img-placeholder" style="display:none; aspect-ratio:4/3; border-radius:0;">Nachher</div>
+        </div>
+        <div class="project-body">
+          <div class="project-meta">
+            <span class="project-tag">12,0 m²</span>
+            <span class="project-tag">28 Werktage</span>
+          </div>
+          <h3>Premium-Badsanierung mit Sauna, Stuttgart-Vaihingen</h3>
+          <p class="project-description">Raumaufteilung komplett neu geplant, Glasdampfsauna integriert, freistehende Natursteinwanne als Mittelpunkt. Alle Gewerke in eigener Hand.</p>
+          <blockquote class="project-quote">„Die Qualität stimmt, die Termine werden gehalten — und die Abrechnung ist sauber. Mehr brauche ich nicht."</blockquote>
+          <p class="project-author">— Thomas Sommer, Immobilieninvestor Stuttgart</p>
+        </div>
+      </article>
+
+    </div>
+    <div class="projects-cta fade-in">
+      <a href="#" class="btn-secondary">Alle Referenzprojekte ansehen →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     S5 — VERTRAUEN
+══════════════════════════════════════════════════════════════ -->
+<section class="trust">
+  <div class="container">
+    <div class="trust-header fade-in">
+      <h2>17 Jahre. 38 Mitarbeiter. 5 Jahre Garantie.</h2>
+      <p>Nicht als Versprechen — als Betriebsergebnis.</p>
+    </div>
+    <div class="trust-grid">
+      <div class="trust-left">
+        <div class="trust-numbers stagger">
+          <div class="trust-number-item fade-in">
+            <div class="trust-number">17</div>
+            <div class="trust-number-label">Jahre AquaVera in Stuttgart, seit 2009</div>
+          </div>
+          <div class="trust-number-item fade-in">
+            <div class="trust-number">38</div>
+            <div class="trust-number-label">Festangestellte — 12 Installateure, 8 Fliesenleger</div>
+          </div>
+          <div class="trust-number-item fade-in">
+            <div class="trust-number">400</div>
+            <div class="trust-number-label">m² Showroom in Stuttgart-Mitte</div>
+          </div>
+          <div class="trust-number-item fade-in">
+            <div class="trust-number">5J.</div>
+            <div class="trust-number-label">Garantie auf alle ausgeführten Arbeiten</div>
+          </div>
+        </div>
+        <div class="trust-guarantee fade-in">
+          <h3>5-Jahres-Garantie</h3>
+          <p>Verfugung, Verfliesung, Silikon, Sanitärinstallation, Abdichtung — alles was wir selbst ausführen, ist 5 Jahre garantiert. Das Doppelte der gesetzlichen Mindestpflicht.</p>
+          <p>Bei einem gemeldeten Mangel: wir kommen innerhalb von 5 Werktagen zur Beurteilung. Garantiefälle werden innerhalb von 2 Wochen behoben. Kein Kleingedrucktes.</p>
+        </div>
+      </div>
+      <div class="trust-right">
+        <div class="trust-team fade-in">
+          <img
+            src="assets/team.png"
+            alt="Das AquaVera-Team: 38 Mitarbeiter vor dem Firmengebäude in Stuttgart."
+            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          />
+          <div class="img-placeholder" style="display:none;">assets/team.png</div>
+        </div>
+        <div class="trust-kfw fade-in">
+          <h3>KfW-Förderung 455-B</h3>
+          <p>Das KfW-Programm 455-B fördert altersgerechte Umbauten mit bis zu 4.000 €. Unser Projektleiter Thomas Müller übernimmt den gesamten Förderantrag — kein Bürokratieaufwand auf Ihrer Seite. Wir prüfen im ersten Gespräch ob Ihr Projekt förderfähig ist.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     S6 — SHOWROOM
+══════════════════════════════════════════════════════════════ -->
+<section class="showroom">
+  <div class="container">
+    <div class="showroom-image fade-in">
+      <img
+        src="assets/showroom-aquavera.jpg"
+        alt="Der AquaVera Showroom in Stuttgart — verschiedene Badwelten zum Anfassen."
+        onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+      />
+      <div class="img-placeholder" style="display:none;">assets/showroom-aquavera.jpg</div>
+    </div>
+    <div class="showroom-content">
+      <div class="showroom-eyebrow fade-in">Stuttgart-Mitte</div>
+      <h2 class="fade-in">400 m² Bad. In Stuttgart-Mitte. Zum Anfassen.</h2>
+      <p class="showroom-sub fade-in">Sehen Sie Materialien, Armaturen und komplette Badwelten live — bevor Sie sich entscheiden. Termine auch am Samstag.</p>
+      <p class="showroom-body fade-in">Fotos zeigen Ergebnisse. Der Showroom zeigt ob sich Naturstein wirklich so anfühlt, wie er aussieht. Ob die bodenebene Dusche den Raum wirklich größer macht. Ob Villeroy & Boch oder Duravit besser zu Ihnen passt.</p>
+      <a href="#formular" class="btn-primary fade-in">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 8L8 14M2 8H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Showroom-Termin vereinbaren
+      </a>
+      <div class="showroom-fud fud-list fade-in">
+        <div class="fud-item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Kostenlos und unverbindlich
+        </div>
+        <div class="fud-item">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2.5 7L5.5 10L11.5 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Auch samstags geöffnet — nach Terminvereinbarung
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     S7 — KUNDENSTIMMEN
+══════════════════════════════════════════════════════════════ -->
+<section class="testimonials">
+  <div class="container">
+    <div class="testimonials-header fade-in">
+      <h2>Was Stuttgarter Kunden nach ihrer Badsanierung sagen.</h2>
+    </div>
+    <div class="testimonials-grid stagger">
+
+      <article class="testimonial-card fade-in">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">Wir haben drei Jahre überlegt und immer wieder verschoben — zu viel Aufwand, zu viel Ungewissheit. Am Ende war es viel unkomplizierter als gedacht. Und jetzt fragen wir uns, warum wir so lange gewartet haben.</p>
+        <div class="testimonial-meta">
+          <div class="testimonial-name">Renate und Herbert Schneider</div>
+          <div class="testimonial-type">Stuttgart-Zuffenhausen | Komplettsanierung</div>
+        </div>
+      </article>
+
+      <article class="testimonial-card fade-in">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">Ich habe null Ahnung von Bau. Beim ersten Gespräch hat mir der Projektleiter erklärt was wirklich nötig ist — und was nicht. Das hat mein Vertrauen sofort gewonnen.</p>
+        <div class="testimonial-meta">
+          <div class="testimonial-name">Sabine Lorenz</div>
+          <div class="testimonial-type">Stuttgart-Süd | Teilsanierung Duschbereich</div>
+        </div>
+      </article>
+
+      <article class="testimonial-card fade-in">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">Ich hatte ein kleines Bad und dachte, für die sind wir zu unwichtig. Aber die haben sich genauso viel Zeit genommen. Jeden Abend ein kurzes Update — das hätte ich so nicht erwartet.</p>
+        <div class="testimonial-meta">
+          <div class="testimonial-name">Michael Berger</div>
+          <div class="testimonial-type">Esslingen | Badsanierung 4,2 m²</div>
+        </div>
+      </article>
+
+      <article class="testimonial-card fade-in">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">Nach unserem ersten Erlebnis mit einem anderen Betrieb — Chaos, Verzögerung, niemand erreichbar — war ich wirklich skeptisch. Heute sage ich: es war das Beste was wir hätten tun können.</p>
+        <div class="testimonial-meta">
+          <div class="testimonial-name">Jürgen Hartmann</div>
+          <div class="testimonial-type">Ludwigsburg | Komplettsanierung</div>
+        </div>
+      </article>
+
+      <article class="testimonial-card fade-in">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">Ich hatte überhaupt keine Vorstellung was ich will — nur dass es irgendwie schöner werden soll. Im Showroom hat sich das alles sehr schnell konkretisiert. Am Ende hatte ich ein klares Bild.</p>
+        <div class="testimonial-meta">
+          <div class="testimonial-name">Sandra Mayer</div>
+          <div class="testimonial-type">Stuttgart-Nord | Luxusbad</div>
+        </div>
+      </article>
+
+      <article class="testimonial-card fade-in">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-quote">Mein Mann ist Ingenieur — der hat bei jedem Termin mitgeschrieben. Alles was versprochen wurde, wurde eingehalten. Er sagt immer noch: das war das erste Mal in 20 Jahren Hausbesitz.</p>
+        <div class="testimonial-meta">
+          <div class="testimonial-name">Claudia und Stefan Roth</div>
+          <div class="testimonial-type">Leinfelden-Echterdingen | Komplettsanierung</div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     S8 — LEAD-FORMULAR
+══════════════════════════════════════════════════════════════ -->
+<section class="lead-form" id="formular">
+  <div class="container">
+    <div class="lead-form-intro fade-in">
+      <h2>Wie sieht Ihr Bad aus — in 60 Tagen?</h2>
+      <p>Beschreiben Sie uns Ihr Projekt in 2 Minuten. Wir melden uns innerhalb von 24 Stunden mit einer ersten Einschätzung.</p>
+      <div class="lead-proof">
+        <div class="lead-proof-item"><div class="lead-proof-dot"></div>Kein Verkaufsgespräch — ehrliche erste Einschätzung</div>
+        <div class="lead-proof-item"><div class="lead-proof-dot"></div>Kostenlos und unverbindlich</div>
+        <div class="lead-proof-item"><div class="lead-proof-dot"></div>4,9 Sterne | 387 Bewertungen | 17 Jahre Stuttgart</div>
+      </div>
+    </div>
+
+    <div class="form-card fade-in">
+      <div class="form-progress">
+        <div class="form-progress-fill" id="formProgress"></div>
+      </div>
+
+      <!-- Schritt 1 — Stil -->
+      <div class="form-step active" data-step="1">
+        <div class="form-step-label">Schritt 1 von 5</div>
+        <div class="form-step-title">Wie soll sich Ihr neues Bad anfühlen?</div>
+        <div class="style-tiles">
+          <button class="style-tile" data-value="modern">
+            <img src="assets/shower-modern.jpg" alt="Elegante, bodenebene Dusche mit schwarz-weißem Marmor — modern und fugenlos."
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="img-placeholder" style="display:none; aspect-ratio:3/2; border-radius:0;">Bild</div>
+            <div class="style-tile-label">Modern &amp; fugenlos</div>
+          </button>
+          <button class="style-tile" data-value="natuerlich">
+            <img src="assets/hero.jpg" alt="Bad mit warmem Holzschrank, Naturstein und Messingarmaturen."
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="img-placeholder" style="display:none; aspect-ratio:3/2; border-radius:0;">Bild</div>
+            <div class="style-tile-label">Warm &amp; natürlich</div>
+          </button>
+          <button class="style-tile" data-value="luxus">
+            <img src="assets/bathroom-modern.jpg" alt="Premium-Doppelwaschtisch mit Marmor und indirekter Beleuchtung."
+              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
+            <div class="img-placeholder" style="display:none; aspect-ratio:3/2; border-radius:0;">Bild</div>
+            <div class="style-tile-label">Luxus &amp; individuell</div>
+          </button>
+          <button class="style-tile" data-value="offen">
+            <div class="style-tile-text">Ich bin noch offen</div>
+            <div class="style-tile-label">Noch unentschieden</div>
+          </button>
+        </div>
+        <div class="form-nav">
+          <button class="form-btn-next" id="nextBtn1" disabled onclick="goToStep(2)">Weiter →</button>
+        </div>
+      </div>
+
+      <!-- Schritt 2 — Art des Projekts -->
+      <div class="form-step" data-step="2">
+        <div class="form-step-label">Schritt 2 von 5</div>
+        <div class="form-step-title">Was haben Sie vor?</div>
+        <div class="form-options" id="options2">
+          <button class="form-option" data-value="komplett" onclick="selectOption(this, 'options2', 'nextBtn2')">
+            <div class="form-option-dot"></div>Komplettsanierung — alles neu
+          </button>
+          <button class="form-option" data-value="sanitaer" onclick="selectOption(this, 'options2', 'nextBtn2')">
+            <div class="form-option-dot"></div>Nur Sanitär erneuern (WC, Waschtisch, Dusche / Badewanne)
+          </button>
+          <button class="form-option" data-value="barrierefrei" onclick="selectOption(this, 'options2', 'nextBtn2')">
+            <div class="form-option-dot"></div>Barrierefreier Umbau — sicheres Bad für die Zukunft
+          </button>
+          <button class="form-option" data-value="neubau" onclick="selectOption(this, 'options2', 'nextBtn2')">
+            <div class="form-option-dot"></div>Neubau / Ersteinrichtung
+          </button>
+        </div>
+        <div class="form-nav">
+          <button class="form-btn-back" onclick="goToStep(1)">← Zurück</button>
+          <button class="form-btn-next" id="nextBtn2" disabled onclick="goToStep(3)">Weiter →</button>
+        </div>
+      </div>
+
+      <!-- Schritt 3 — Badgröße -->
+      <div class="form-step" data-step="3">
+        <div class="form-step-label">Schritt 3 von 5</div>
+        <div class="form-step-title">Wie groß ist Ihr Badezimmer ungefähr?</div>
+        <div class="form-options" id="options3">
+          <button class="form-option" data-value="bis5" onclick="selectOption(this, 'options3', 'nextBtn3')">
+            <div class="form-option-dot"></div>Bis 5 m²
+          </button>
+          <button class="form-option" data-value="5-8" onclick="selectOption(this, 'options3', 'nextBtn3')">
+            <div class="form-option-dot"></div>5 – 8 m²
+          </button>
+          <button class="form-option" data-value="8-12" onclick="selectOption(this, 'options3', 'nextBtn3')">
+            <div class="form-option-dot"></div>8 – 12 m²
+          </button>
+          <button class="form-option" data-value="ueber12" onclick="selectOption(this, 'options3', 'nextBtn3')">
+            <div class="form-option-dot"></div>Über 12 m²
+          </button>
+        </div>
+        <div class="form-nav">
+          <button class="form-btn-back" onclick="goToStep(2)">← Zurück</button>
+          <button class="form-btn-next" id="nextBtn3" disabled onclick="goToStep(4)">Weiter →</button>
+        </div>
+      </div>
+
+      <!-- Schritt 4 — Budget -->
+      <div class="form-step" data-step="4">
+        <div class="form-step-label">Schritt 4 von 5</div>
+        <div class="form-step-title">Welchen Rahmen haben Sie im Blick?</div>
+        <div class="form-options" id="options4">
+          <button class="form-option" data-value="10-20" onclick="selectOption(this, 'options4', 'nextBtn4')">
+            <div class="form-option-dot"></div>10.000 – 20.000 €
+          </button>
+          <button class="form-option" data-value="20-35" onclick="selectOption(this, 'options4', 'nextBtn4')">
+            <div class="form-option-dot"></div>20.000 – 35.000 €
+          </button>
+          <button class="form-option" data-value="35-60" onclick="selectOption(this, 'options4', 'nextBtn4')">
+            <div class="form-option-dot"></div>35.000 – 60.000 €
+          </button>
+          <button class="form-option" data-value="ueber60" onclick="selectOption(this, 'options4', 'nextBtn4')">
+            <div class="form-option-dot"></div>Über 60.000 €
+          </button>
+          <button class="form-option" data-value="unsicher" onclick="selectOption(this, 'options4', 'nextBtn4')">
+            <div class="form-option-dot"></div>Ich bin noch unsicher
+          </button>
+        </div>
+        <div class="form-nav">
+          <button class="form-btn-back" onclick="goToStep(3)">← Zurück</button>
+          <button class="form-btn-next" id="nextBtn4" disabled onclick="goToStep(5)">Weiter →</button>
+        </div>
+      </div>
+
+      <!-- Schritt 5 — Kontakt -->
+      <div class="form-step" data-step="5">
+        <div class="form-step-label">Schritt 5 von 5</div>
+        <div class="form-step-title">Fast geschafft. Wie erreichen wir Sie?</div>
+        <div class="form-fields">
+          <div class="form-field">
+            <label for="f-name">Name</label>
+            <input type="text" id="f-name" placeholder="Ihr vollständiger Name" />
+          </div>
+          <div class="form-field">
+            <label for="f-phone">Telefon</label>
+            <input type="tel" id="f-phone" placeholder="0711 – ..." />
+          </div>
+          <div class="form-field">
+            <label for="f-email">E-Mail</label>
+            <input type="email" id="f-email" placeholder="ihre@email.de" />
+          </div>
+          <div class="form-field">
+            <label for="f-plz">PLZ</label>
+            <input type="text" id="f-plz" placeholder="7xxxx" maxlength="5" />
+          </div>
+        </div>
+        <div class="form-nav">
+          <button class="form-btn-back" onclick="goToStep(4)">← Zurück</button>
+          <button class="form-btn-next" onclick="submitForm()">Projekt jetzt unverbindlich anfragen</button>
+        </div>
+      </div>
+
+      <!-- Erfolg -->
+      <div class="form-success" id="formSuccess">
+        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin: 0 auto 16px;"><circle cx="24" cy="24" r="23" stroke="#2C4A3E" stroke-width="2"/><path d="M14 24L21 31L34 17" stroke="#2C4A3E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <h3>Vielen Dank!</h3>
+        <p>Wir melden uns innerhalb von 24 Stunden mit einer ehrlichen ersten Einschätzung.</p>
+      </div>
+
+      <div class="form-phone-fallback">
+        Lieber anrufen? <a href="tel:07113489200">0711 – 348 920</a> (Mo–Fr 8–18 Uhr)
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     S9 — FAQ & CLOSER
+══════════════════════════════════════════════════════════════ -->
+<section class="faq">
+  <div class="container">
+    <div class="faq-left fade-in">
+      <h2>Häufige Fragen — direkt beantwortet.</h2>
+      <p>Alles was Sie wissen wollen, bevor Sie anfragen.</p>
+      <a href="#formular" class="btn-primary">Projekt anfragen</a>
+    </div>
+    <div class="faq-right">
+      <div class="faq-list">
+
+        <div class="faq-item fade-in">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Wie lange dauert eine komplette Badsanierung?
+            <span class="faq-icon">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M2 6H10" stroke="#1A1917" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Eine Standardsanierung dauert bei uns 10–14 Werktage. Für einen einfachen Duschumbau rechnen wir 5–7 Werktage. Bei Luxus- oder Sonderprojekten 3–5 Wochen. Das Datum vereinbaren wir schriftlich — und halten es.</div></div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Können wir das Bad während des Umbaus nutzen?
+            <span class="faq-icon">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M2 6H10" stroke="#1A1917" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">In der Kernbauphase ist das Bad nicht nutzbar. Wir besprechen das vor Projektstart und sorgen dafür, dass die Übergangszeit so kurz wie möglich ist. Bei den meisten Komplettsanierungen sind es 10–14 Werktage.</div></div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Was passiert wenn etwas schiefläuft?
+            <span class="faq-icon">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M2 6H10" stroke="#1A1917" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Ihr Projektleiter ruft Sie sofort an — er wartet nicht bis Sie selbst es bemerken. Für alles was wir ausgeführt haben, gilt unsere 5-Jahres-Garantie. Gemeldete Mängel beurteilen wir binnen 5 Werktagen. Garantiefälle werden innerhalb von 2 Wochen behoben.</div></div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Wie funktioniert die KfW-Förderung?
+            <span class="faq-icon">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M2 6H10" stroke="#1A1917" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Das KfW-Programm 455-B fördert altersgerechte Umbauten mit bis zu 4.000 €. Unser Projektleiter Thomas Müller stellt den Antrag für Sie — Sie müssen sich um nichts kümmern. Wir prüfen im ersten Gespräch ob Ihr Projekt förderfähig ist.</div></div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Arbeiten Sie nur in Stuttgart?
+            <span class="faq-icon">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M2 6H10" stroke="#1A1917" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Unser Hauptgebiet ist Stuttgart und die umliegenden Gemeinden — Filderstadt, Leinfelden-Echterdingen, Esslingen, Ludwigsburg und weitere. Bei größeren Projekten sind wir auch darüber hinaus tätig.</div></div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Was kostet eine Badsanierung bei AquaVera?
+            <span class="faq-icon">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M2 6H10" stroke="#1A1917" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Jedes Bad ist anders — pauschale Preise nennen wir deshalb nicht. Im kostenlosen Erstgespräch schätzen wir Ihren Rahmen ehrlich ein — ohne Druck, ohne Überraschungen danach.</div></div>
+        </div>
+
+        <div class="faq-item fade-in">
+          <button class="faq-question" onclick="toggleFaq(this)">
+            Kann ich Materialien und Armaturen vorher live sehen?
+            <span class="faq-icon">
+              <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M6 2V10M2 6H10" stroke="#1A1917" stroke-width="1.5" stroke-linecap="round"/></svg>
+            </span>
+          </button>
+          <div class="faq-answer"><div class="faq-answer-inner">Ja — unser Showroom in Stuttgart-Mitte hat 400 m² Ausstellungsfläche. Sie können Fliesen, Armaturen und komplette Badwelten vor der Entscheidung anfassen und vergleichen. Termin auch samstags möglich.</div></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     S10 — CLOSER
+══════════════════════════════════════════════════════════════ -->
+<section class="closer">
+  <div class="container">
+    <h2 class="fade-in">Ihr Projekt. Ihr Termin. Ihr Ansprechpartner.</h2>
+    <p class="fade-in">Machen Sie den ersten Schritt — wir antworten innerhalb von 24 Stunden.</p>
+    <div class="closer-ctas fade-in">
+      <a href="#formular" class="btn-primary">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 8L8 14M2 8H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Projekt jetzt anfragen
+      </a>
+      <div class="closer-phone">Oder direkt anrufen: <a href="tel:07113489200">0711 – 348 920</a> (Markus Breitner, Mo–Fr 8–18 Uhr)</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-logo">AquaVera</div>
+      <nav>
+        <ul class="footer-nav">
+          <li><a href="impressum.html">Impressum</a></li>
+          <li><a href="datenschutz.html">Datenschutz</a></li>
+        </ul>
+      </nav>
+      <div class="footer-copy">© 2026 AquaVera GmbH, Stuttgart</div>
+    </div>
+  </div>
+</footer>
+
+<!-- Sticky Mobile CTA -->
+<div class="sticky-cta">
+  <a href="#formular">Jetzt kostenlos anfragen →</a>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════════════════ -->
+<script>
+  // ─── Scroll Animations ─────────────────────────────────────
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.fade-in:not(.visible)').forEach(el => observer.observe(el));
+
+  // ─── FAQ Accordion ──────────────────────────────────────────
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  // ─── Multi-step Form ────────────────────────────────────────
+  const totalSteps = 5;
+
+  function goToStep(n) {
+    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+    const target = document.querySelector(`[data-step="${n}"]`);
+    if (target) {
+      target.classList.add('active');
+      document.getElementById('formProgress').style.width = (n / totalSteps * 100) + '%';
+    }
+  }
+
+  function selectOption(btn, groupId, nextBtnId) {
+    const group = document.getElementById(groupId);
+    group.querySelectorAll('.form-option').forEach(o => o.classList.remove('selected'));
+    btn.classList.add('selected');
+    const nextBtn = document.getElementById(nextBtnId);
+    if (nextBtn) nextBtn.disabled = false;
+  }
+
+  // Style tiles (step 1)
+  document.querySelectorAll('.style-tile').forEach(tile => {
+    tile.addEventListener('click', () => {
+      document.querySelectorAll('.style-tile').forEach(t => t.classList.remove('selected'));
+      tile.classList.add('selected');
+      document.getElementById('nextBtn1').disabled = false;
+    });
+  });
+
+  function submitForm() {
+    document.querySelectorAll('.form-step').forEach(s => s.classList.remove('active'));
+    document.getElementById('formSuccess').style.display = 'block';
+    document.getElementById('formProgress').style.width = '100%';
+  }
+</script>
+
+</body>
+</html>
