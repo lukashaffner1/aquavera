@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aquavera.vercel.app/sitemap.xml

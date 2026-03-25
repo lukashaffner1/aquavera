@@ -4,6 +4,41 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>AquaVera Stuttgart — Badsanierung mit festem Projektleiter</title>
+  <meta name="description" content="AquaVera Stuttgart: Badsanierung mit festem Projektleiter. 387 Kunden, 4,9 Sterne, 5 Jahre Garantie. Jetzt kostenlos anfragen — Rückmeldung in 24 h." />
+  <link rel="canonical" href="https://aquavera.vercel.app" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="AquaVera Stuttgart — Ihr Bad fertig zum Termin" />
+  <meta property="og:description" content="Badsanierung mit festem Projektleiter. 387 Stuttgarter Kunden, 4,9 Sterne, 5 Jahre Garantie. Kostenlos anfragen." />
+  <meta property="og:image" content="https://aquavera.vercel.app/assets/hero.webp" />
+  <meta property="og:url" content="https://aquavera.vercel.app" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- JSON-LD LocalBusiness -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "AquaVera GmbH",
+    "url": "https://aquavera.vercel.app",
+    "telephone": "+4971134892000",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Stuttgart",
+      "addressCountry": "DE"
+    },
+    "description": "AquaVera Stuttgart: Badsanierung mit festem Projektleiter. 387 Kunden, 4,9 Sterne, 5 Jahre Garantie."
+  }
+  </script>
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+
+  <!-- Preload Hero (LCP) -->
+  <link rel="preload" as="image" href="assets/hero.webp" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
@@ -36,6 +71,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
     body {
       font-family: var(--font-body);
@@ -1216,6 +1252,23 @@
       .closer-ctas .btn-primary { width: 100%; justify-content: center; }
     }
 
+    /* ─── Skip Link ─────────────────────────────────────────────── */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--primary);
+      color: var(--text-heading-dark);
+      padding: 8px 16px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 0 0 var(--radius-md) 0;
+      z-index: 999;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 0; }
+
     /* ══════════════════════════════════════════════════════════════
        STICKY MOBILE CTA
     ══════════════════════════════════════════════════════════════ */
@@ -1296,6 +1349,10 @@
 
 <body>
 
+<a href="#main" class="skip-link">Zum Hauptinhalt springen</a>
+
+<main id="main">
+
 <!-- ══════════════════════════════════════════════════════════════
      S1 — HERO
 ══════════════════════════════════════════════════════════════ -->
@@ -1363,6 +1420,7 @@
       <img
         src="assets/project-leader.webp"
         alt="AquaVera-Projektleiter auf einer Badsanierungsbaustelle in Stuttgart — mit Bauplan und AquaVera-Polo, Stuttgarter Skyline im Hintergrund."
+        loading="lazy" width="560" height="700"
         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
       />
       <div class="img-placeholder" style="display:none;">assets/project-leader.webp</div>
@@ -1400,9 +1458,11 @@
           <span class="before-after-label">Vorher</span>
           <span class="before-after-label after-label">Nachher</span>
           <img src="assets/project-1-before.webp" alt="Altes Badezimmer mit 70er-Jahre-Kacheln in Olivgrün vor der Sanierung."
+            loading="lazy" width="560" height="560"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="img-placeholder" style="display:none; aspect-ratio:4/3; border-radius:0;">Vorher</div>
           <img src="assets/project-1-after.webp" alt="Fertiggestellte Komplettsanierung — modernes Bad mit grauen Großformatfliesen."
+            loading="lazy" width="560" height="560"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="img-placeholder" style="display:none; aspect-ratio:4/3; border-radius:0;">Nachher</div>
         </div>
@@ -1424,9 +1484,11 @@
           <span class="before-after-label">Vorher</span>
           <span class="before-after-label after-label">Nachher</span>
           <img src="assets/project-2-before.webp" alt="Altes Gäste-WC mit beigen Kacheln vor der Luxussanierung."
+            loading="lazy" width="560" height="700"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="img-placeholder" style="display:none; aspect-ratio:4/3; border-radius:0;">Vorher</div>
           <img src="assets/project-2-after.webp" alt="Fertiggestellte Gäste-WC-Luxussanierung — Marmor, Holzlamellenwand, Goldarmatur."
+            loading="lazy" width="560" height="700"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="img-placeholder" style="display:none; aspect-ratio:4/3; border-radius:0;">Nachher</div>
         </div>
@@ -1447,9 +1509,11 @@
           <span class="before-after-label">Vorher</span>
           <span class="before-after-label after-label">Nachher</span>
           <img src="assets/project-3-before.webp" alt="Altes Hauptbad aus den 90ern mit weißen Kleinkacheln."
+            loading="lazy" width="560" height="560"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="img-placeholder" style="display:none; aspect-ratio:4/3; border-radius:0;">Vorher</div>
           <img src="assets/project-3-after.webp" alt="Fertiggestelltes Hauptbad mit ebenerdiger Glasdusche und warmem indirektem Licht."
+            loading="lazy" width="560" height="560"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="img-placeholder" style="display:none; aspect-ratio:4/3; border-radius:0;">Nachher</div>
         </div>
@@ -1470,9 +1534,11 @@
           <span class="before-after-label">Vorher</span>
           <span class="before-after-label after-label">Nachher</span>
           <img src="assets/project-4-before.webp" alt="Altes Privatbad aus den 2000ern mit Beigefliesen und Whirlpool-Badewanne."
+            loading="lazy" width="560" height="560"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="img-placeholder" style="display:none; aspect-ratio:4/3; border-radius:0;">Vorher</div>
           <img src="assets/project-4-after.webp" alt="Fertiggestelltes Premium-Bad mit freistehender Naturstein-Badewanne und Glasdampfsauna."
+            loading="lazy" width="560" height="560"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
           <div class="img-placeholder" style="display:none; aspect-ratio:4/3; border-radius:0;">Nachher</div>
         </div>
@@ -1535,6 +1601,7 @@
           <img
             src="assets/team.webp"
             alt="Das AquaVera-Team: 38 Mitarbeiter vor dem Firmengebäude in Stuttgart."
+            loading="lazy" width="560" height="420"
             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
           />
           <div class="img-placeholder" style="display:none;">assets/team.webp</div>
@@ -1557,6 +1624,7 @@
       <img
         src="assets/showroom-aquavera.webp"
         alt="Der AquaVera Showroom in Stuttgart — verschiedene Badwelten zum Anfassen."
+        loading="lazy" width="700" height="560"
         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
       />
       <div class="img-placeholder" style="display:none;">assets/showroom-aquavera.webp</div>
@@ -1679,18 +1747,21 @@
         <div class="style-tiles">
           <button class="style-tile" data-value="modern">
             <img src="assets/shower-modern.webp" alt="Elegante, bodenebene Dusche mit schwarz-weißem Marmor — modern und fugenlos."
+              loading="lazy" width="300" height="200"
               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
             <div class="img-placeholder" style="display:none; aspect-ratio:3/2; border-radius:0;">Bild</div>
             <div class="style-tile-label">Modern &amp; fugenlos</div>
           </button>
           <button class="style-tile" data-value="natuerlich">
             <img src="assets/hero.webp" alt="Bad mit warmem Holzschrank, Naturstein und Messingarmaturen."
+              loading="lazy" width="300" height="200"
               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
             <div class="img-placeholder" style="display:none; aspect-ratio:3/2; border-radius:0;">Bild</div>
             <div class="style-tile-label">Warm &amp; natürlich</div>
           </button>
           <button class="style-tile" data-value="luxus">
             <img src="assets/bathroom-modern.webp" alt="Premium-Doppelwaschtisch mit Marmor und indirekter Beleuchtung."
+              loading="lazy" width="300" height="200"
               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
             <div class="img-placeholder" style="display:none; aspect-ratio:3/2; border-radius:0;">Bild</div>
             <div class="style-tile-label">Luxus &amp; individuell</div>
@@ -1926,6 +1997,8 @@
     </div>
   </div>
 </section>
+
+</main>
 
 <!-- ══════════════════════════════════════════════════════════════
      FOOTER
