@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Badsanierung anfragen — AquaVera Stuttgart</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="form-builder.css">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: #1E2226;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    #msf-container { width: 100%; max-width: 760px; }
+    .msf-widget {
+      --msf-accent:         #2C4A3E;
+      --msf-accent-hover:   #243E33;
+      --msf-accent-light:   #EBF0EE;
+      --msf-accent-ring:    #7BA99E;
+      --msf-background:     #FFFFFF;
+      --msf-surface:        #FFFFFF;
+      --msf-border:         #D6D1CB;
+      --msf-border-focus:   #2C4A3E;
+      --msf-text-primary:   #1A1917;
+      --msf-text-secondary: #3D3A35;
+      --msf-text-muted:     #857F77;
+      --msf-gold:           #2C4A3E;
+      --msf-font-display:   'Fraunces', Georgia, serif;
+      --msf-font-body:      'Inter', system-ui, sans-serif;
+      --msf-label-color:    #1A1917;
+      --msf-image-position: top;
+    }
+  </style>
+</head>
+<body>
+  <div id="msf-container" data-msf-container></div>
+  <script src="aquavera-form-config.js"></script>
+  <script src="form-builder.js"></script>
+  <script>MultiStepForm.autoInit();</script>
+</body>
+</html>

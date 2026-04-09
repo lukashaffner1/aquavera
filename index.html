@@ -38,6 +38,7 @@
 
   <!-- Preload Hero (LCP) -->
   <link rel="preload" as="image" href="assets/hero.webp" />
+  <link rel="stylesheet" href="form-builder.css">
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -1372,7 +1373,7 @@
       <h1>Ihr neues Bad in Stuttgart — fertig zum vereinbarten Termin.</h1>
       <p class="hero-sub">Jeden Tag wissen, was auf Ihrer Baustelle passiert. Fester Projektleiter von der Planung bis zur Übergabe. 387 Stuttgarter Kunden, 4,9 Sterne.</p>
       <div class="hero-ctas">
-        <a href="#formular" class="btn-primary">
+        <a href="anfrage.html" class="btn-primary">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 8L8 14M2 8H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           Jetzt kostenlos anfragen — in 2 Minuten
         </a>
@@ -1634,7 +1635,7 @@
       <h2 class="fade-in">400 m² Bad. In Stuttgart-Mitte. Zum Anfassen.</h2>
       <p class="showroom-sub fade-in">Sehen Sie Materialien, Armaturen und komplette Badwelten live — bevor Sie sich entscheiden. Termine auch am Samstag.</p>
       <p class="showroom-body fade-in">Fotos zeigen Ergebnisse. Der Showroom zeigt ob sich Naturstein wirklich so anfühlt, wie er aussieht. Ob die bodenebene Dusche den Raum wirklich größer macht. Ob Villeroy & Boch oder Duravit besser zu Ihnen passt.</p>
-      <a href="#formular" class="btn-primary fade-in">
+      <a href="anfrage.html" class="btn-primary fade-in">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 8L8 14M2 8H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Showroom-Termin vereinbaren
       </a>
@@ -1735,163 +1736,89 @@
       </div>
     </div>
 
-    <div class="form-card fade-in">
-      <div class="form-progress">
-        <div class="form-progress-fill" id="formProgress"></div>
-      </div>
+    <style>
+      #msf-landing { width: 100%; }
+      #msf-landing .msf-widget {
+        --msf-accent:         #2C4A3E;
+        --msf-accent-hover:   #243E33;
+        --msf-accent-light:   #EBF0EE;
+        --msf-accent-ring:    #7BA99E;
+        --msf-background:     #F5F2EE;
+        --msf-surface:        #FFFFFF;
+        --msf-border:         #D6D1CB;
+        --msf-border-focus:   #2C4A3E;
+        --msf-text-primary:   #1A1917;
+        --msf-text-secondary: #3D3A35;
+        --msf-text-muted:     #857F77;
+        --msf-gold:           #2C4A3E;
+        --msf-font-display:   'Fraunces', Georgia, serif;
+        --msf-font-body:      'Inter', system-ui, sans-serif;
+        --msf-label-color:    #1A1917;
+        --msf-image-position: top;
+      }
+    </style>
 
-      <!-- Schritt 1 — Stil -->
-      <div class="form-step active" data-step="1">
-        <div class="form-step-label">Schritt 1 von 5</div>
-        <div class="form-step-title">Wie soll sich Ihr neues Bad anfühlen?</div>
-        <div class="style-tiles">
-          <button class="style-tile" data-value="modern">
-            <img src="assets/shower-modern.webp" alt="Elegante, bodenebene Dusche mit schwarz-weißem Marmor — modern und fugenlos."
-              loading="lazy" width="300" height="200"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div class="img-placeholder" style="display:none; aspect-ratio:3/2; border-radius:0;">Bild</div>
-            <div class="style-tile-label">Modern &amp; fugenlos</div>
-          </button>
-          <button class="style-tile" data-value="natuerlich">
-            <img src="assets/hero.webp" alt="Bad mit warmem Holzschrank, Naturstein und Messingarmaturen."
-              loading="lazy" width="300" height="200"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div class="img-placeholder" style="display:none; aspect-ratio:3/2; border-radius:0;">Bild</div>
-            <div class="style-tile-label">Warm &amp; natürlich</div>
-          </button>
-          <button class="style-tile" data-value="luxus">
-            <img src="assets/bathroom-modern.webp" alt="Premium-Doppelwaschtisch mit Marmor und indirekter Beleuchtung."
-              loading="lazy" width="300" height="200"
-              onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" />
-            <div class="img-placeholder" style="display:none; aspect-ratio:3/2; border-radius:0;">Bild</div>
-            <div class="style-tile-label">Luxus &amp; individuell</div>
-          </button>
-          <button class="style-tile" data-value="offen">
-            <div class="style-tile-text">Ich bin noch offen</div>
-            <div class="style-tile-label">Noch unentschieden</div>
-          </button>
-        </div>
-        <div class="form-nav">
-          <button class="form-btn-next" id="nextBtn1" disabled onclick="goToStep(2)">Weiter →</button>
-        </div>
-      </div>
+    <div id="msf-landing"></div>
 
-      <!-- Schritt 2 — Art des Projekts -->
-      <div class="form-step" data-step="2">
-        <div class="form-step-label">Schritt 2 von 5</div>
-        <div class="form-step-title">Was haben Sie vor?</div>
-        <div class="form-options" id="options2">
-          <button class="form-option" data-value="komplett" onclick="selectOption(this, 'options2', 'nextBtn2')">
-            <div class="form-option-dot"></div>Komplettsanierung — alles neu
-          </button>
-          <button class="form-option" data-value="sanitaer" onclick="selectOption(this, 'options2', 'nextBtn2')">
-            <div class="form-option-dot"></div>Nur Sanitär erneuern (WC, Waschtisch, Dusche / Badewanne)
-          </button>
-          <button class="form-option" data-value="barrierefrei" onclick="selectOption(this, 'options2', 'nextBtn2')">
-            <div class="form-option-dot"></div>Barrierefreier Umbau — sicheres Bad für die Zukunft
-          </button>
-          <button class="form-option" data-value="neubau" onclick="selectOption(this, 'options2', 'nextBtn2')">
-            <div class="form-option-dot"></div>Neubau / Ersteinrichtung
-          </button>
-        </div>
-        <div class="form-nav">
-          <button class="form-btn-back" onclick="goToStep(1)">← Zurück</button>
-          <button class="form-btn-next" id="nextBtn2" disabled onclick="goToStep(3)">Weiter →</button>
-        </div>
-      </div>
-
-      <!-- Schritt 3 — Badgröße -->
-      <div class="form-step" data-step="3">
-        <div class="form-step-label">Schritt 3 von 5</div>
-        <div class="form-step-title">Wie groß ist Ihr Badezimmer ungefähr?</div>
-        <div class="form-options" id="options3">
-          <button class="form-option" data-value="bis5" onclick="selectOption(this, 'options3', 'nextBtn3')">
-            <div class="form-option-dot"></div>Bis 5 m²
-          </button>
-          <button class="form-option" data-value="5-8" onclick="selectOption(this, 'options3', 'nextBtn3')">
-            <div class="form-option-dot"></div>5 – 8 m²
-          </button>
-          <button class="form-option" data-value="8-12" onclick="selectOption(this, 'options3', 'nextBtn3')">
-            <div class="form-option-dot"></div>8 – 12 m²
-          </button>
-          <button class="form-option" data-value="ueber12" onclick="selectOption(this, 'options3', 'nextBtn3')">
-            <div class="form-option-dot"></div>Über 12 m²
-          </button>
-        </div>
-        <div class="form-nav">
-          <button class="form-btn-back" onclick="goToStep(2)">← Zurück</button>
-          <button class="form-btn-next" id="nextBtn3" disabled onclick="goToStep(4)">Weiter →</button>
-        </div>
-      </div>
-
-      <!-- Schritt 4 — Budget -->
-      <div class="form-step" data-step="4">
-        <div class="form-step-label">Schritt 4 von 5</div>
-        <div class="form-step-title">Welchen Rahmen haben Sie im Blick?</div>
-        <div class="form-options" id="options4">
-          <button class="form-option" data-value="10-20" onclick="selectOption(this, 'options4', 'nextBtn4')">
-            <div class="form-option-dot"></div>10.000 – 20.000 €
-          </button>
-          <button class="form-option" data-value="20-35" onclick="selectOption(this, 'options4', 'nextBtn4')">
-            <div class="form-option-dot"></div>20.000 – 35.000 €
-          </button>
-          <button class="form-option" data-value="35-60" onclick="selectOption(this, 'options4', 'nextBtn4')">
-            <div class="form-option-dot"></div>35.000 – 60.000 €
-          </button>
-          <button class="form-option" data-value="ueber60" onclick="selectOption(this, 'options4', 'nextBtn4')">
-            <div class="form-option-dot"></div>Über 60.000 €
-          </button>
-          <button class="form-option" data-value="unsicher" onclick="selectOption(this, 'options4', 'nextBtn4')">
-            <div class="form-option-dot"></div>Ich bin noch unsicher
-          </button>
-        </div>
-        <div class="form-nav">
-          <button class="form-btn-back" onclick="goToStep(3)">← Zurück</button>
-          <button class="form-btn-next" id="nextBtn4" disabled onclick="goToStep(5)">Weiter →</button>
-        </div>
-      </div>
-
-      <!-- Schritt 5 — Kontakt -->
-      <div class="form-step" data-step="5">
-        <div class="form-step-label">Schritt 5 von 5</div>
-        <div class="form-step-title">Fast geschafft. Wie erreichen wir Sie?</div>
-        <div class="form-fields">
-          <div class="form-field">
-            <label for="f-name">Name</label>
-            <input type="text" id="f-name" placeholder="Ihr vollständiger Name" />
-          </div>
-          <div class="form-field">
-            <label for="f-phone">Telefon</label>
-            <input type="tel" id="f-phone" placeholder="0711 – ..." />
-          </div>
-          <div class="form-field">
-            <label for="f-email">E-Mail</label>
-            <input type="email" id="f-email" placeholder="ihre@email.de" />
-          </div>
-          <div class="form-field">
-            <label for="f-plz">PLZ</label>
-            <input type="text" id="f-plz" placeholder="7xxxx" maxlength="5" />
-          </div>
-        </div>
-        <div class="form-nav">
-          <button class="form-btn-back" onclick="goToStep(4)">← Zurück</button>
-          <button class="form-btn-next" onclick="submitForm()">Projekt jetzt unverbindlich anfragen</button>
-        </div>
-      </div>
-
-      <!-- Erfolg -->
-      <div class="form-success" id="formSuccess">
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" style="margin: 0 auto 16px;"><circle cx="24" cy="24" r="23" stroke="#2C4A3E" stroke-width="2"/><path d="M14 24L21 31L34 17" stroke="#2C4A3E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        <h3>Vielen Dank!</h3>
-        <p>Wir melden uns innerhalb von 24 Stunden mit einer ehrlichen ersten Einschätzung.</p>
-      </div>
-
-      <div class="form-phone-fallback">
-        Lieber anrufen? <a href="tel:07113489200">0711 – 348 920</a> (Mo–Fr 8–18 Uhr)
-      </div>
+    <div style="text-align:center; margin-top:16px; font-size:0.875rem; color:#8A837B;">
+      Lieber anrufen? <a href="tel:07113489200" style="color:#A8BFBA;">0711 – 348 920</a> (Mo–Fr 8–18 Uhr)
     </div>
   </div>
 </section>
+
+<script src="form-builder.js"></script>
+<script>
+  MultiStepForm.initLanding('#msf-landing', {
+    form_key:        "aquavera-kontakt",
+    api_url:         "https://client-dashboard-sand.vercel.app",
+    form_name:       "aquavera-kontakt",
+    funnel_page_url: "anfrage.html",
+    show_progress_bar: false,
+    success_message: "Vielen Dank — wir melden uns innerhalb von 24 Stunden.",
+    steps: [
+      {
+        title:        "Welcher Stil spricht Sie am meisten an?",
+        subtitle:     "Wählen Sie das Gefühl, das Ihr neues Bad haben soll.",
+        badge_text:   "Inspiration",
+        auto_advance: true,
+        fields: [
+          {
+            type:  "image_select",
+            name:  "badstil",
+            label: "Ihr Wunschstil",
+            options: [
+              {
+                value:       "fugenlos",
+                label:       "Fugenlos & Modern",
+                image_url:   "assets/shower-modern.webp",
+                description: "Glatte Oberflächen, puristischer Loft-Look"
+              },
+              {
+                value:       "dunkel_luxus",
+                label:       "Edle Dunkelheit",
+                image_url:   "assets/PLACEHOLDER_dark-luxury.jpg",
+                description: "Dunkle Fliesen, Schiefer-Optik — Luxus-Spa-Gefühl"
+              },
+              {
+                value:       "hell_natuerlich",
+                label:       "Helle Oase",
+                image_url:   "assets/bathroom-modern.webp",
+                description: "Helle Fliesen, Naturstein, viel Licht"
+              },
+              {
+                value:       "holz_natur",
+                label:       "Holz & Natur",
+                image_url:   "assets/hero.webp",
+                description: "Warme Holztöne kombiniert mit Keramik"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  });
+</script>
+
 
 <!-- ══════════════════════════════════════════════════════════════
      S9 — FAQ & CLOSER
@@ -1901,7 +1828,7 @@
     <div class="faq-left fade-in">
       <h2>Häufige Fragen — direkt beantwortet.</h2>
       <p>Alles was Sie wissen wollen, bevor Sie anfragen.</p>
-      <a href="#formular" class="btn-primary">Projekt anfragen</a>
+      <a href="anfrage.html" class="btn-primary">Projekt anfragen</a>
     </div>
     <div class="faq-right">
       <div class="faq-list">
@@ -1989,7 +1916,7 @@
     <h2 class="fade-in">Ihr Projekt. Ihr Termin. Ihr Ansprechpartner.</h2>
     <p class="fade-in">Machen Sie den ersten Schritt — wir antworten innerhalb von 24 Stunden.</p>
     <div class="closer-ctas fade-in">
-      <a href="#formular" class="btn-primary">
+      <a href="anfrage.html" class="btn-primary">
         <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 2L14 8L8 14M2 8H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         Projekt jetzt anfragen
       </a>
@@ -2020,7 +1947,7 @@
 
 <!-- Sticky Mobile CTA -->
 <div class="sticky-cta">
-  <a href="#formular">Jetzt kostenlos anfragen →</a>
+  <a href="anfrage.html">Jetzt kostenlos anfragen →</a>
 </div>
 
 <!-- ══════════════════════════════════════════════════════════════
