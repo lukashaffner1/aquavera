@@ -788,6 +788,9 @@
         var ratio = Utils.el('div', { className: 'msf-image-ratio' });
         var img = Utils.el('img', { src: opt.image_url || '', alt: opt.label });
         img.loading = 'lazy';
+        if (opt.image_position) {
+          img.style.objectPosition = opt.image_position;
+        }
         ratio.appendChild(img);
         btn.appendChild(ratio);
 
@@ -1290,7 +1293,7 @@
         currentStep.fields.some(function(f) { return f.type === 'image_select'; });
       if (hasImageSelect) {
         this.container.classList.add('msf-widget--image-step');
-        this.container.style.maxWidth = '900px';
+        this.container.style.maxWidth = '1080px';
       } else {
         this.container.classList.remove('msf-widget--image-step');
         this.container.style.maxWidth = '600px';

@@ -20,33 +20,37 @@ window.FORM_CONFIG = {
             {
               value:       "fugenlos",
               label:       "Fugenlos & Modern",
-              image_url:   "assets/shower-modern.webp",
-              description: "Glatte Oberflächen, puristischer Loft-Look"
+              image_url:   "assets/fugenloses-badezimmer.webp",
+              description: "Glatte Oberflächen, puristischer Loft-Look",
+              image_position: "center"
             },
             {
               value:       "dunkel_luxus",
               label:       "Edle Dunkelheit",
-              image_url:   "assets/PLACEHOLDER_dark-luxury.jpg",
-              description: "Dunkle Fliesen, Schiefer-Optik — Luxus-Spa-Gefühl"
+              image_url:   "assets/modern-dark-bathroom.webp",
+              description: "Dunkle Fliesen, Schiefer-Optik — Luxus-Spa-Gefühl",
+              image_position: "center"
             },
             {
               value:       "hell_natuerlich",
               label:       "Helle Oase",
-              image_url:   "assets/bathroom-modern.webp",
-              description: "Helle Fliesen, Naturstein, viel Licht"
+              image_url:   "assets/modern-bright-bathroom.webp",
+              description: "Helle Fliesen, Naturstein, viel Licht",
+              image_position: "center"
             },
             {
               value:       "holz_natur",
               label:       "Holz & Natur",
-              image_url:   "assets/hero.webp",
-              description: "Warme Holztöne kombiniert mit Keramik"
+              image_url:   "assets/wood-bathroom.webp",
+              description: "Warme Holztöne kombiniert mit Keramik",
+              image_position: "center"
             }
           ]
         }
       ]
     },
 
-    // ── Step 2: Art des Projekts (Bildauswahl) ──
+    // ── Step 2: Art des Projekts (Einzelauswahl) ──
     {
       title:        "Was haben Sie vor?",
       subtitle:     "Wählen Sie das Ziel Ihrer Sanierung.",
@@ -54,56 +58,36 @@ window.FORM_CONFIG = {
       auto_advance: true,
       fields: [
         {
-          type:  "image_select",
+          type:  "select",
           name:  "projektart",
           label: "Art des Projekts",
           options: [
-            {
-              value:       "komplettsanierung",
-              label:       "Komplett-Sanierung",
-              image_url:   "assets/PLACEHOLDER_komplett.jpg",
-              description: "Alles neu — vom Boden bis zur Decke"
-            },
-            {
-              value:       "barrierefrei",
-              label:       "Barrierefreier Umbau",
-              image_url:   "assets/PLACEHOLDER_barrierefrei.jpg",
-              description: "Sicheres Bad für die Zukunft — KfW-förderfähig"
-            },
-            {
-              value:       "teilsanierung",
-              label:       "Teilsanierung",
-              image_url:   "assets/PLACEHOLDER_teilsanierung.jpg",
-              description: "Nur Dusche, WC oder Waschtisch erneuern"
-            },
-            {
-              value:       "wellness",
-              label:       "Wellness-Tempel",
-              image_url:   "assets/project-4-after.webp",
-              description: "Sauna, Spa, Dampfbad — individueller Luxus"
-            }
+            { value: "teilsanierung",       label: "Teilsanierung" },
+            { value: "komplettsanierung",   label: "Komplette Sanierung" },
+            { value: "barrierefrei",        label: "Barrierefreier Umbau" }
           ]
         }
       ]
     },
 
-    // ── Step 3: Elemente / Umfang (Mehrfachauswahl) ──
+    // ── Step 3: Elemente / Umfang (Bildauswahl, Mehrfachauswahl) ──
     {
       title:    "Welche Elemente sollen wir einplanen?",
       subtitle: "Mehrfachauswahl möglich.",
       badge_text: "Ausstattung",
       fields: [
         {
-          type:  "multi_select",
+          type:  "image_select",
           name:  "elemente",
+          multi: true,
           label: "Gewünschte Elemente",
           options: [
-            { value: "bodenebene_dusche",     label: "Bodentiefe Dusche" },
-            { value: "freistehende_badewanne", label: "Freistehende Badewanne" },
-            { value: "fussbodenheizung",       label: "Fußbodenheizung" },
-            { value: "sauna",                  label: "Sauna / Dampfbad" },
-            { value: "doppelwaschtisch",        label: "Doppelwaschtisch" },
-            { value: "lichtkonzept",            label: "Neues Lichtkonzept" }
+            { value: "bodenebene_dusche",     label: "Bodentiefe Dusche",       image_url: "assets/bodentiefe-dusche.webp",       image_position: "center" },
+            { value: "freistehende_badewanne", label: "Freistehende Badewanne",  image_url: "assets/freistehende-badewanne.webp", image_position: "center 60%" },
+            { value: "fussbodenheizung",       label: "Fußbodenheizung",         image_url: "assets/fussbodenheizung.webp",       image_position: "center" },
+            { value: "sauna",                  label: "Sauna / Dampfbad",        image_url: "assets/sauna.webp",                  image_position: "center" },
+            { value: "doppelwaschtisch",       label: "Doppelwaschtisch",        image_url: "assets/doppelwaschtisch.webp",       image_position: "center 40%" },
+            { value: "lichtkonzept",           label: "Neues Lichtkonzept",      image_url: "assets/lichtkonzept.webp",           image_position: "center" }
           ],
           min_selections: 1
         }
