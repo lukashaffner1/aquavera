@@ -44,6 +44,17 @@
 
 .msf-progress {
   padding: 20px 40px 0;
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+.msf-progress-pct {
+  display: block;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--msf-text-muted);
+  margin-top: 6px;
+  font-family: var(--msf-font-body);
 }
 
 /* Line variant */
@@ -638,6 +649,7 @@ textarea.msf-input {
   width: 100%;
   padding-bottom: 75%;
   overflow: hidden;
+  border-radius: 10px 10px 0 0;
 }
 
 .msf-image-ratio img {

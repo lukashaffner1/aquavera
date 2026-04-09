@@ -959,7 +959,8 @@
           var stored = sessionStorage.getItem(storageKey);
           if (stored) {
             funnelData = JSON.parse(stored);
-            sessionStorage.removeItem(storageKey);
+            // Nicht sofort löschen — bleibt für Browser-Back erhalten.
+            // Wird erst beim Submit oder Thank-You-Redirect gelöscht.
           }
         } catch (e) {}
         // Fallback: check URL parameter (for file:// protocol or blocked sessionStorage)
@@ -1022,6 +1023,15 @@
 
       this._setupAbandon();
       this.render();
+
+      // Bfcache-Fix: Wenn die Seite aus dem Back/Forward-Cache wiederhergestellt wird,
+      // muss _advancing zurückgesetzt werden, damit auto_advance erneut funktioniert.
+      var self = this;
+      window.addEventListener('pageshow', function (event) {
+        if (event.persisted) {
+          self._advancing = false;
+        }
+      });
     }
 
     // ── State helpers ──────────────────────────────────────────
@@ -1350,6 +1360,8 @@
         fill.style.width = progress + '%';
         track.appendChild(fill);
         wrap.appendChild(track);
+        var pct = Utils.el('span', { className: 'msf-progress-pct' }, progress + ' %');
+        wrap.appendChild(pct);
       } else if (variant === 'steps') {
         var stepsRow = Utils.el('div', { className: 'msf-progress-steps', role: 'list' });
         for (var i = 1; i <= total; i++) {
@@ -1524,6 +1536,11 @@
     }
 
     _redirectOrRender() {
+      // Funnel-Daten aus sessionStorage aufräumen (wurde beim Laden nicht gelöscht)
+      var funnelKey = this.config.funnel_storage_key ||
+        ('msf_funnel_' + this.config.form_key + '_' + this.config.form_name);
+      try { sessionStorage.removeItem(funnelKey); } catch (e) {}
+
       if (this.config.thank_you_page_url) {
         var tyKey = 'msf_ty_' + this.config.form_key + '_' + this.config.form_name;
         try {
