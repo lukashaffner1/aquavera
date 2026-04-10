@@ -22,7 +22,7 @@ window.FORM_CONFIG = {
               label:       "Fugenlos & Modern",
               image_url:   "assets/fugenloses-badezimmer.webp",
               description: "Glatte Oberflächen, puristischer Loft-Look",
-              image_position: "center"
+              image_position: "center 65%"
             },
             {
               value:       "dunkel_luxus",
@@ -36,14 +36,14 @@ window.FORM_CONFIG = {
               label:       "Helle Oase",
               image_url:   "assets/modern-bright-bathroom.webp",
               description: "Helle Fliesen, Naturstein, viel Licht",
-              image_position: "center"
+              image_position: "center 60%"
             },
             {
               value:       "holz_natur",
               label:       "Holz & Natur",
               image_url:   "assets/wood-bathroom.webp",
               description: "Warme Holztöne kombiniert mit Keramik",
-              image_position: "center"
+              image_position: "center 45%"
             }
           ]
         }
