@@ -660,7 +660,7 @@ textarea.msf-input {
 }
 
 .msf-image-ratio {
-  position: relative;
+  display: block;
   width: 100%;
   aspect-ratio: 4 / 3;
   overflow: hidden;
@@ -668,8 +668,7 @@ textarea.msf-input {
 }
 
 .msf-image-ratio img {
-  position: absolute;
-  inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
