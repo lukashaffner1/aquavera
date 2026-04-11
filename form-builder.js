@@ -1212,33 +1212,22 @@
           this.state.isSubmitted = true;
           this._redirectOrRender();
         } else {
-          // Fire-and-forget: Submit im Hintergrund, sofort weiterleiten
-          var apiUrl = (this.config.api_url || '').replace(/\/$/, '');
-          var payload = JSON.stringify({ form_key: this.config.form_key, fields: this.state.data });
+          // Submit mit Timeout: max 800ms warten, dann weiterleiten
+          var self = this;
+          var submitPromise = Supabase.submitLead(this.config, this.state.data);
+          var timeout = new Promise(function(resolve) { setTimeout(resolve, 800); });
 
-          // sendBeacon überlebt Page-Navigation
-          var beaconSent = false;
-          if (navigator.sendBeacon) {
-            beaconSent = navigator.sendBeacon(
-              apiUrl + '/api/submit',
-              new Blob([payload], { type: 'application/json' })
-            );
-          }
-          // Fallback: fetch mit keepalive
-          if (!beaconSent) {
-            fetch(apiUrl + '/api/submit', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: payload,
-              keepalive: true
-            }).catch(function() {});
-          }
-
-          Analytics.track(this.config, 'form_submitted', null, this.sessionId, this.utmParams);
-          this._clearLS();
-          this.state.isSubmitting = false;
-          this.state.isSubmitted = true;
-          this._redirectOrRender();
+          Promise.race([submitPromise, timeout]).then(function() {
+            Analytics.track(self.config, 'form_submitted', null, self.sessionId, self.utmParams);
+            self._clearLS();
+            self.state.isSubmitting = false;
+            self.state.isSubmitted = true;
+            self._redirectOrRender();
+          }).catch(function(err) {
+            self.state.isSubmitting = false;
+            self.state.submitError = err instanceof Error ? err.message : 'Unbekannter Fehler.';
+            self.render();
+          });
         }
       } else {
         this.state.errors = {};
@@ -1584,7 +1573,13 @@
             }
           }));
         } catch (e) {}
-        window.location.href = this.config.thank_you_page_url;
+        // Sanftes Fade-out vor Redirect
+        var tyUrl = this.config.thank_you_page_url;
+        this.container.style.transition = 'opacity 0.3s ease';
+        this.container.style.opacity = '0';
+        setTimeout(function() {
+          window.location.href = tyUrl;
+        }, 300);
       } else {
         this.render();
       }
@@ -1898,6 +1893,8 @@
      * Auto-init: looks for window.FORM_CONFIG and [data-msf-container] or #msf-form.
      */
     autoInit: function () {
+      if (global._msfAutoInitDone) return;
+      global._msfAutoInitDone = true;
       var cfg = global.FORM_CONFIG;
       if (!cfg) {
         var c = document.querySelector('[data-msf-container]') || document.querySelector('#msf-form');
