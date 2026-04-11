@@ -957,31 +957,34 @@
 
       if (!this.isLandingMode) {
         var funnelData = null;
-        // Try sessionStorage first
-        try {
-          var stored = sessionStorage.getItem(storageKey);
-          if (stored) {
-            funnelData = JSON.parse(stored);
-            // Nicht sofort löschen — bleibt für Browser-Back erhalten.
-            // Wird erst beim Submit oder Thank-You-Redirect gelöscht.
-          }
-        } catch (e) {}
-        // Fallback: check URL parameter (for file:// protocol or blocked sessionStorage)
-        if (!funnelData) {
+        var urlParams = new URLSearchParams(window.location.search);
+        var fromLanding = urlParams.get('from_landing') === '1';
+
+        if (fromLanding) {
+          // Vom Landing-Step: sessionStorage lesen
           try {
-            var urlParams = new URLSearchParams(window.location.search);
-            var msfParam = urlParams.get('msf_data');
-            if (msfParam) {
-              funnelData = JSON.parse(decodeURIComponent(msfParam));
-              // Clean URL without triggering reload
-              if (window.history && window.history.replaceState) {
-                urlParams.delete('msf_data');
-                var cleanUrl = window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : '');
-                window.history.replaceState({}, '', cleanUrl);
-              }
-            }
+            var stored = sessionStorage.getItem(storageKey);
+            if (stored) funnelData = JSON.parse(stored);
           } catch (e) {}
+          // Fallback: URL-Parameter (file:// oder blockierte sessionStorage)
+          if (!funnelData) {
+            try {
+              var msfParam = urlParams.get('msf_data');
+              if (msfParam) funnelData = JSON.parse(decodeURIComponent(msfParam));
+            } catch (e) {}
+          }
+          // URL aufräumen
+          if (window.history && window.history.replaceState) {
+            urlParams.delete('from_landing');
+            urlParams.delete('msf_data');
+            var cleanUrl = window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : '');
+            window.history.replaceState({}, '', cleanUrl);
+          }
+        } else {
+          // Nicht vom Landing → stale Funnel-Daten löschen
+          try { sessionStorage.removeItem(storageKey); } catch (e) {}
         }
+
         if (funnelData) {
           Object.assign(initialData, funnelData);
           startIndex = 1;
@@ -1189,11 +1192,12 @@
         } catch (e) {
           console.warn('[MultiStepForm] sessionStorage nicht verfügbar. Daten werden als URL-Parameter übergeben.', e);
         }
-        // Fallback: pass data as URL parameter if sessionStorage failed
+        // Redirect zur Funnel-Seite mit Marker from_landing=1
         var url = this.config.funnel_page_url;
+        var sep = url.indexOf('?') === -1 ? '?' : '&';
+        url += sep + 'from_landing=1';
         if (!stored) {
-          var sep = url.indexOf('?') === -1 ? '?' : '&';
-          url += sep + 'msf_data=' + encodeURIComponent(JSON.stringify(this.state.data));
+          url += '&msf_data=' + encodeURIComponent(JSON.stringify(this.state.data));
         }
         window.location.href = url;
         return;
@@ -1293,7 +1297,13 @@
         currentStep.fields.some(function(f) { return f.type === 'image_select'; });
       if (hasImageSelect) {
         this.container.classList.add('msf-widget--image-step');
-        this.container.style.maxWidth = '1080px';
+        var imgField = currentStep.fields.find(function(f) { return f.type === 'image_select'; });
+        var optCount = imgField ? imgField.options.length : 0;
+        if (optCount <= 4) {
+          this.container.style.maxWidth = '1200px';
+        } else {
+          this.container.style.maxWidth = '960px';
+        }
       } else {
         this.container.classList.remove('msf-widget--image-step');
         this.container.style.maxWidth = '600px';

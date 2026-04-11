@@ -597,8 +597,11 @@ textarea.msf-input {
 }
 
 @container msf (min-width: 520px) and (max-width: 699px) {
-  .msf-image-ratio {
+  .msf-image-ratio img {
     aspect-ratio: 20 / 17;
+  }
+  .msf-image-grid-6 .msf-image-ratio img {
+    aspect-ratio: 3 / 2;
   }
 }
 
@@ -606,11 +609,21 @@ textarea.msf-input {
   .msf-image-grid-4 {
     grid-template-columns: repeat(4, 1fr);
   }
-  .msf-image-ratio {
+  .msf-image-ratio img {
     aspect-ratio: 20 / 17;
   }
-  .msf-image-grid-6 .msf-image-ratio {
-    aspect-ratio: 25 / 18;
+  .msf-image-grid-4 .msf-image-ratio img {
+    aspect-ratio: 4 / 3;
+  }
+  .msf-image-grid-6 .msf-image-ratio img {
+    aspect-ratio: 5 / 3;
+  }
+  .msf-image-grid-6 .msf-image-btn-label {
+    padding: 7px 10px 8px;
+    min-height: 36px;
+  }
+  .msf-image-grid-6 .msf-image-btn-title {
+    font-size: 0.75rem;
   }
   .msf-image-btn-title {
     font-size: 0.8rem;
@@ -625,6 +638,8 @@ textarea.msf-input {
 }
 
 .msf-image-btn {
+  display: flex;
+  flex-direction: column;
   border: 2px solid var(--msf-border);
   border-radius: 12px;
   overflow: hidden;
@@ -633,6 +648,10 @@ textarea.msf-input {
   padding: 0;
   transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
   text-align: left;
+}
+
+.msf-image-btn .msf-image-btn-label {
+  margin-top: auto;
 }
 
 .msf-image-btn:hover {
@@ -662,15 +681,14 @@ textarea.msf-input {
 .msf-image-ratio {
   position: relative;
   width: 100%;
-  aspect-ratio: 4 / 3;
   overflow: hidden;
+  background: var(--msf-border);
 }
 
 .msf-image-ratio img {
-  position: absolute;
-  inset: 0;
+  display: block;
   width: 100%;
-  height: 100%;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   object-position: var(--msf-image-position, top);
   transition: transform 0.3s ease;
