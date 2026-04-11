@@ -1212,18 +1212,33 @@
           this.state.isSubmitted = true;
           this._redirectOrRender();
         } else {
-          try {
-            await Supabase.submitLead(this.config, this.state.data);
-            Analytics.track(this.config, 'form_submitted', null, this.sessionId, this.utmParams);
-            this._clearLS();
-            this.state.isSubmitting = false;
-            this.state.isSubmitted = true;
-            this._redirectOrRender();
-          } catch (err) {
-            this.state.isSubmitting = false;
-            this.state.submitError = err instanceof Error ? err.message : 'Unbekannter Fehler.';
-            this.render();
+          // Fire-and-forget: Submit im Hintergrund, sofort weiterleiten
+          var apiUrl = (this.config.api_url || '').replace(/\/$/, '');
+          var payload = JSON.stringify({ form_key: this.config.form_key, fields: this.state.data });
+
+          // sendBeacon überlebt Page-Navigation
+          var beaconSent = false;
+          if (navigator.sendBeacon) {
+            beaconSent = navigator.sendBeacon(
+              apiUrl + '/api/submit',
+              new Blob([payload], { type: 'application/json' })
+            );
           }
+          // Fallback: fetch mit keepalive
+          if (!beaconSent) {
+            fetch(apiUrl + '/api/submit', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: payload,
+              keepalive: true
+            }).catch(function() {});
+          }
+
+          Analytics.track(this.config, 'form_submitted', null, this.sessionId, this.utmParams);
+          this._clearLS();
+          this.state.isSubmitting = false;
+          this.state.isSubmitted = true;
+          this._redirectOrRender();
         }
       } else {
         this.state.errors = {};

@@ -650,8 +650,8 @@ textarea.msf-input {
   text-align: left;
 }
 
-.msf-image-btn .msf-image-btn-label {
-  margin-top: auto;
+.msf-image-btn .msf-image-ratio {
+  flex: 0 0 auto;
 }
 
 .msf-image-btn:hover {
@@ -704,6 +704,8 @@ textarea.msf-input {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  flex: 1 1 auto;
+  background: var(--msf-surface);
 }
 
 .msf-image-btn-title {
